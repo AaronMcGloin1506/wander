@@ -15,10 +15,10 @@ function Home(props) {
         </div>
         <div className="row justify-content-center">
           <div className="col-4">
-            <Button className="text-dark" type="submit" size="lg" color="info">Upload Trail</Button>
+            <Button className="text-dark" type="submit" size="lg" color="info" href="/">Upload Trail</Button>
           </div>
           <div className="col-4">
-            <Button className="text-dark" type="submit" size="lg" color="info">View Trail</Button>
+            <Button className="text-dark" type="submit" size="lg" color="info" href="/provence">View Trail</Button>
           </div>
         </div>
       </div>

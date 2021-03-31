@@ -22,7 +22,7 @@ class Header extends Component {
             <div className="color">
                 <Navbar>
                     <div className="container">
-                        <img src='assets/images/logo.png' href="/" height="50" width="170" alt="Wander" />
+                        <a href="/home"><img src='assets/images/logo.png' height="50" width="170" alt="Wander" /></a>
                     </div>
                 </Navbar>
             </div>
