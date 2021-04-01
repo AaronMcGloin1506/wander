@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-import {Provences} from '../shared/provences'
+import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function RenderCard({provence}){
     return(
         <div className="col-6 col-md-4 col-lg-3">
             <Card>
-                <CardImg src={provence.image} alt="provence1" />
-                <CardBody>
-                    <CardTitle>{provence.name}</CardTitle>
-                    <CardText>{provence.description}</CardText>
-                </CardBody>
+                <Link to={`/counties/${provence.id}`} counties={provence.counties}>
+                    <CardImg src={provence.image} alt="provence1" />
+                    <CardBody>
+                        <CardTitle>{provence.name}</CardTitle>
+                        <CardText>{provence.description}</CardText>
+                    </CardBody>
+                </Link>
             </Card>
         </div>
     );
@@ -19,9 +21,6 @@ function RenderCard({provence}){
 class Provence extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            provences: Provences
-        }
     }
     render(){
         return(
@@ -30,7 +29,7 @@ class Provence extends Component {
                 <h3>Pick a Provence you would like to explore</h3>
                 <div className="container">
                     <div className="row justify-content-center">
-                        {this.state.provences.map((provence) => {
+                        {this.props.provences.map((provence) => {
                             return(
                                 <RenderCard provence={provence} />
                             )
