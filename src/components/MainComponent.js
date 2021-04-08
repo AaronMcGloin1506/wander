@@ -4,11 +4,14 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
-import Provence from './ProvenceComponent';
-import Counties from './CountiesComponents';
+import ProvenceList from './ProvenceComponent';
+import CountiesList from './CountiesComponents';
+import TrailsList from './TrailsComponents';
+import Upload from './UploadComponent'
 
 import {Provences} from '../shared/provences';
-
+import {Counties} from '../shared/counties';
+import {Trails} from '../shared/trails';
 
 
 
@@ -17,7 +20,9 @@ class Main extends Component {
         super(props)
 
         this.state = {
-            provences: Provences
+            provences: Provences,
+            counties: Counties,
+            trails: Trails
         }
     }
     render() {
@@ -30,18 +35,24 @@ class Main extends Component {
         const CountiesWithId = ({match}) => {
             return(
                 
-                <Counties counties={this.state.provences.filter((provence) => provence.id === parseInt(match.params.provenceId,10))[0]} />
+                <CountiesList counties={this.state.counties.filter((county) => county.provId === parseInt(match.params.provenceId,10))}/>
                 
             )
-
+        }
+        const TrailsWithId = ({match}) => {
+            return(
+                <TrailsList trails={this.state.trails.filter((trail) => trail.countyId === parseInt(match.params.countyId,10))} />
+            )
         }
         return(
             <div>
                 <Header />
                     <Switch>
                         <Route path="/home" component={HomePage} />
-                        <Route path="/provence" component={() => <Provence provences={this.state.provences}/>} />
+                        <Route path="/provence" component={() => <ProvenceList provences={this.state.provences}/>} />
                         <Route path="/counties/:provenceId" component={CountiesWithId} />
+                        <Route path="/trails/:countyId" component={TrailsWithId}/>
+                        <Route path="/upload" component={() => <Upload counties={this.state.counties} />} />
                         <Redirect to="home" />
                     </Switch>
                 <Footer />

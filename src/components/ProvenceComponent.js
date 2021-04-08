@@ -6,7 +6,7 @@ function RenderCard({provence}){
     return(
         <div className="col-6 col-md-4 col-lg-3">
             <Card>
-                <Link to={`/counties/${provence.id}`} counties={provence.counties}>
+                <Link to={`/counties/${provence.id}`}>
                     <CardImg src={provence.image} alt="provence1" />
                     <CardBody>
                         <CardTitle>{provence.name}</CardTitle>
@@ -18,7 +18,7 @@ function RenderCard({provence}){
     );
 };
 
-class Provence extends Component {
+class ProvenceList extends Component {
     constructor(props){
         super(props)
     }
@@ -43,4 +43,4 @@ class Provence extends Component {
     
 }
 
-export default Provence;
+export default ProvenceList;
