@@ -9,17 +9,8 @@ export const Trails = [
         description: "A short description of Glencar Waterfall",
         image: "../assets/images/trail.jpg",
         map:"../assets/images/Glencar.jpg",
-        category: [' Lakes & Rivers ', ' Upland Walks '],
-        grade: 'Strenous',
-        terrain: ['Country Roads', 'Forest Trail', 'Mountain Trail', 'Multi-Access Paths'],
-        waymarking: 'Yellow Arrows',
-        trailhead: 'Roadside Parking',
-        length: '2.2',
-        ascent: 230,
-        time: '2.0',
-        longitude: '54.340360',
-        latitude: '-8.373239'
-
+        category: [' Lakes & Rivers '],
+        terrain: 'Forest Trail'
     },
     {
         name: 'Knocknarea',

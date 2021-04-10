@@ -91,32 +91,17 @@ class RenderTrail extends Component{
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <div className="col-12" align="center">
+                            <div className="col-6" align="right">
                                 <p><strong>Walk Category: </strong>{this.props.trail.category}</p>
                             </div>
-                            <div className="col-12" align="center">
-                                <p><strong>Grade of Walk: </strong>{this.props.trail.grade}</p>
-                            </div>
-                            <div className="col-12" align="center">
+                            <div className="col-6" align="left">
                                 <p><strong>Walking Terrain: </strong>{this.props.trail.terrain}</p>
                             </div>
-                            <div className="col-6" align="right">
-                                <p><strong>Waymarking: </strong>{this.props.trail.waymarking}</p>
+                            <div className="col-12" align="center">
+                                <p><strong>Brief Description: </strong></p>
                             </div>
-                            <div className="col-6" align="left">
-                                <p><strong>Trailhead: </strong>{this.props.trail.trailhead}</p>
-                            </div>
-                            <div className="col-6" align="right">
-                                <p><strong>Length: </strong>{this.props.trail.length}</p>
-                            </div>
-                            <div className="col-6" align="left">
-                                <p><strong>Time: </strong>{this.props.trail.time}</p>
-                            </div>
-                            <div className="col-6" align="right">
-                                <p><strong>Longitude: </strong>{this.props.trail.longitude}</p>
-                            </div>
-                            <div className="col-6" align="left">
-                                <p><strong>Latitude: </strong>{this.props.trail.latitude}</p>
+                            <div className="col-12" align="center">
+                                <p>{this.props.trail.description}</p>
                             </div>
                             <div className="col-12" align="center">
                                 {StarRating(this.props.trail.rating)}

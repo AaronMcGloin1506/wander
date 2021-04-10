@@ -52,7 +52,7 @@ class Main extends Component {
                         <Route path="/provence" component={() => <ProvenceList provences={this.state.provences}/>} />
                         <Route path="/counties/:provenceId" component={CountiesWithId} />
                         <Route path="/trails/:countyId" component={TrailsWithId}/>
-                        <Route path="/upload" component={() => <Upload counties={this.state.counties} />} />
+                        <Route path="/upload" component={() => <Upload counties={this.state.counties} provences={this.state.provences} />} />
                         <Redirect to="home" />
                     </Switch>
                 <Footer />
