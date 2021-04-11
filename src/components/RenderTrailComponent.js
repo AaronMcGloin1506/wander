@@ -75,19 +75,19 @@ class RenderTrail extends Component{
                     <Card>
                         <CardImg src={this.props.trail.image} alt={this.props.trail.name} />
                         <CardBody>
-                            <CardTitle>{this.props.trail.name}</CardTitle>
+                            <CardTitle>{this.props.trail.trailname}</CardTitle>
                             {StarRating(this.props.trail.rating)}
                         </CardBody>
                     </Card>
                 </a>
             </div>
             <Modal size="lg" isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                <ModalHeader style={{ background: '#9EE4D6' }} isOpen={this.state.isModalOpen} toggle={this.toggleModal}>{this.props.trail.name}</ModalHeader>
+                <ModalHeader style={{ background: '#9EE4D6' }} isOpen={this.state.isModalOpen} toggle={this.toggleModal}>{this.props.trail.trailname}</ModalHeader>
                 <ModalBody style={{ background: '#9EE4D6' }}>
                     <div classname="container">
                         <div className="row justify-content-center">
                             <div className="col-sm-12 col-md-8">
-                                <img width="100%" src={this.props.trail.map} alt={this.props.trail.name}/>
+                                <img width="100%" src={this.props.trail.map} alt={this.props.trail.trailname}/>
                             </div>
                         </div>
                         <div className="row justify-content-center">

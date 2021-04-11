@@ -1,4 +1,4 @@
-export const Counties = [
+export const COUNTIES = [
     {
         id: 0,
         name: 'Sligo',

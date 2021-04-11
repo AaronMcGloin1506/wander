@@ -1,6 +1,6 @@
-export const Trails = [
+export const TRAILS = [
     {
-        name: 'Glencar Waterfall',
+        trailname: 'Glencar Waterfall',
         id:0,
         author: "Aaron",
         countyId: 0,
@@ -13,7 +13,7 @@ export const Trails = [
         terrain: 'Forest Trail'
     },
     {
-        name: 'Knocknarea',
+        trailname: 'Knocknarea',
         id:1,
         author: "Aaron",
         countyId: 0,

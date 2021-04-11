@@ -1,4 +1,4 @@
-export const Provences =
+export const PROVENCES =
 [
     {
         id: 0,

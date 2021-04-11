@@ -1,45 +1,18 @@
 import React, { Component } from "react";
-import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col} from 'reactstrap'
+import { Breadcrumb, BreadcrumbItem, Button, Row, FormGroup, Label, Input, Col} from 'reactstrap'
+import { Control, LocalForm, Errors} from 'react-redux-form';
 
 
 class Upload extends Component {
     constructor(props) {
         super(props);
-
-        this.state={
-            form: { 
-                trailName: '',
-                author: '',
-                countyId: 0,
-                provId: 0,
-                rating: 0,
-                description: '',
-                image: '../assets/images/trail.jpg',
-                map: '../assets/images/Glencar.jpg',
-                category: '',
-                grade: '',
-                terrain: '',
-            },
-        };
-
-        this.handleInputChange = this.handleInputChange.bind(this);
+ 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
 
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmit(event) {
-        console.log('Current Sate is ' +JSON.stringify(this.state));
-        alert('Current State is: ' + JSON.stringify(this.state));
-        event.preventDefault();
+    handleSubmit(values) {
+        console.log('Current Sate is ' +JSON.stringify(values));
+        alert('Current State is: ' + JSON.stringify(values));
     }
 
     render(){
@@ -51,136 +24,117 @@ class Upload extends Component {
                     <h3>Please fill out trail details</h3>
                 </div>
                 <div className="col-12 col-md-9 ">
-                    <Form onSubmit={this.handleSubmit}> 
-                        <FormGroup row className="center">
+                    <LocalForm onSubmit={(values)=>this.handleSubmit(values)}> 
+                        <Row className="form-group center">
                             <Label htmlFor="trailName" md={2}>Trail name</Label>
                             <Col md={4}>
-                                <Input type="text" id="trailName" name="trailName"
+                                <Control.text model=".trailname" id="trailname" name="trailname"
+                                    className="form-control"
                                     placeholder="Trail Name"
-                                    value={this.state.form.firstname}
                                     onChange={this.handleInputChange} />
                             </Col>
                             <Label htmlFor="author" md={2}>Author</Label>
                             <Col md={4}>
-                                <Input type="text" id="author" name="author"
+                                <Control.text model=".author" id="author" name="author"
+                                    className="form-control"
                                     placeholder="Author"
                                     onChange={this.handleInputChange} />
                             </Col>
-                        </FormGroup>
+                        </Row>
 
-                        <FormGroup row>
+                        <Row className="form-group">
                             <Label htmlFor="county" md={2}>County</Label>
                             <Col md={4}>
-                                <Input type="select" id="county" name="county" onChange={this.handleInputChange}>
+                                <Control.select model=".county" id="county" name="county" className="form-control" onChange={this.handleInputChange}>
                                 {this.props.counties.map((county) => (
                                         <option value ={county.id}>{county.name}</option>
                                     ))}
-                                </Input>
+                                </Control.select>
                             </Col>
                             <Label htmlFor="provence" md={2}>Provence</Label>
                             <Col md={4}>
-                                <Input type="select" id="provence" name="provence" onChange={this.handleInputChange}>
+                                <Control.select model =".provence"id="provence" name="provence" className="form-control" onChange={this.handleInputChange}>
                                 {this.props.provences.map((provence) => (
                                         <option value ={provence.id}>{provence.name}</option>
                                     ))}
-                                </Input>
+                                </Control.select>
                             </Col>
-                        </FormGroup>
+                        </Row>
 
-                        <FormGroup row>
+                        <Row className="form-group">
                             <Label htmlFor="category" md={2}>Walk Category:</Label>  
                             <Col md={4} >
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Lakes and Rivers" name="category" onChange={this.handleInputChange} /> Lakes and Rivers
+                                        <Control.radio model=".category" value="Lakes and Rivers" name="category" className="form-control" onChange={this.handleInputChange} /> Lakes and Rivers 
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Mountains" name="category" onChange={this.handleInputChange}/> Mountains
+                                        <Control.radio model=".category" value ="Mountains" name="category" className="form-control" onChange={this.handleInputChange}/> Mountains
                                     </Label>
-                                    </FormGroup>
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Coastal" name="category" onChange={this.handleInputChange} /> Coastal
+                                        <Control.radio model=".category" value ="Coastal" name="category" className="form-control" onChange={this.handleInputChange} /> Coastal
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Coastal" name="category" onChange={this.handleInputChange}/> Greenway
+                                        <Control.radio model=".catgory" value ="Coastal" name="category" className="form-control" onChange={this.handleInputChange}/> Greenway
                                     </Label>
-                                </FormGroup>
                             </Col>
 
                             <Label htmlFor="terrain" md={2}>Trail Terrain:</Label>  
                             <Col md={4}>
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Path" name="terrain" onChange={this.handleInputChange} /> Path
+                                        <Control.radio model=".terrain" value ="Path" name="terrain" className="form-control" onChange={this.handleInputChange} /> Path
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Grass" name="terrain" onChange={this.handleInputChange} /> Grass
+                                        <Control.radio model=".terrain" value ="Grass" name="terrain" className="form-control" onChange={this.handleInputChange} /> Grass
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
+                               
                                     <Label check>
-                                        <Input type="radio" value ="Bog" name="terrain" onChange={this.handleInputChange} /> Bog
+                                        <Control.radio model=".terrain" value ="Bog" name="terrain" className="form-control" onChange={this.handleInputChange} /> Bog
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
+                                
                                     <Label check>
-                                        <Input type="radio" value ="Rock" name="terrain" onChange={this.handleInputChange} /> Rock
+                                        <Control.radio model=".terrain" value ="Rock" name="terrain" className="form-control" onChange={this.handleInputChange} /> Rock
                                     </Label>
-                                </FormGroup>
                             </Col>
-                        </FormGroup>
+                        </Row>
 
-                        <FormGroup row>
+                        <Row className="form-group">
                         <Label htmlFor="rating" md={2}>Rating:</Label>  
                             <Col md={4}>
-                                <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value="1" name="rating" onChange={this.handleInputChange} /> 1 star
+                                        <Control.radio model=".rating" value="1" name="rating" className="form-control" onChange={this.handleInputChange} /> 1 star
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
+                                
                                     <Label check>
-                                        <Input type="radio"  value ="2" name="rating" onChange={this.handleInputChange}/> 2 star
+                                        <Control.radio model=".rating" value ="2" name="rating" className="form-control" onChange={this.handleInputChange}/> 2 star
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
+                                
                                     <Label check>
-                                        <Input type="radio" value ="3" name="rating" onChange={this.handleInputChange}/> 3 star
+                                        <Control.radio model=".rating" value ="3" name="rating" className="form-control" onChange={this.handleInputChange}/> 3 star
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
+                                
                                     <Label check>
-                                        <Input type="radio" value ="4" name="rating" onChange={this.handleInputChange}/> 4 star
+                                        <Control.radio model=".rating" value ="4" name="rating" className="form-control" onChange={this.handleInputChange}/> 4 star
                                     </Label>
-                                </FormGroup>
-                                <FormGroup check inline>
+                                
                                     <Label check>
-                                        <Input type="radio" value ="5" name="rating" onChange={this.handleInputChange}/> 5 star
+                                        <Control.radio model=".rating" value ="5" name="rating" className="form-control" onChange={this.handleInputChange}/> 5 star
                                     </Label>
-                                </FormGroup>
                             </Col>
 
                             <Label htmlFor="rating" md={2}>Brief Description:</Label>  
                             <Col md={4}>
-                                <Input type="textarea" model=".message" id="message" name="message"
+                                <Control.textarea model=".message" id="message" name="message"
                                         rows="4" 
                                         className="form-control"
                                         onChange={this.handleInputChange}/>
                             </Col>
-                        </FormGroup>
-                        <FormGroup row>
+                        </Row>
+                        <Row className="form-group" row>
                             <Col md={{size:10, offset:1}}>
                                 <Button type="submit" color="info">Send Feedback</Button>
                             </Col>
-                        </FormGroup>
-                    </Form>
+                        </Row>
+                    </LocalForm>
                 </div>
             </div>
             </>
