@@ -19,13 +19,6 @@ class Upload extends Component {
                 category: '',
                 grade: '',
                 terrain: '',
-                waymarking: '',
-                trailhead: '',
-                length: '',
-                ascent: '',
-                time: '',
-                longtitude: '',
-                latitude: ''
             },
         };
 
@@ -96,25 +89,25 @@ class Upload extends Component {
 
                         <FormGroup row>
                             <Label htmlFor="category" md={2}>Walk Category:</Label>  
-                            <Col md={4}>
+                            <Col md={4} >
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Lakes and Rivers" onChange={this.handleInputChange} /> Lakes and Rivers
+                                        <Input type="radio" value ="Lakes and Rivers" name="category" onChange={this.handleInputChange} /> Lakes and Rivers
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" value ="Mountains" onChange={this.handleInputChange} /> Mountains
+                                        <Input type="radio" value ="Mountains" name="category" onChange={this.handleInputChange}/> Mountains
                                     </Label>
                                     </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" onChange={this.handleInputChange} /> Coastal
+                                        <Input type="radio" value ="Coastal" name="category" onChange={this.handleInputChange} /> Coastal
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" onChange={this.handleInputChange} /> Greenway
+                                        <Input type="radio" value ="Coastal" name="category" onChange={this.handleInputChange}/> Greenway
                                     </Label>
                                 </FormGroup>
                             </Col>
@@ -123,22 +116,22 @@ class Upload extends Component {
                             <Col md={4}>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" onChange={this.handleInputChange} /> Path
+                                        <Input type="radio" value ="Path" name="terrain" onChange={this.handleInputChange} /> Path
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" onChange={this.handleInputChange} /> Grass
+                                        <Input type="radio" value ="Grass" name="terrain" onChange={this.handleInputChange} /> Grass
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" onChange={this.handleInputChange} /> Bog
+                                        <Input type="radio" value ="Bog" name="terrain" onChange={this.handleInputChange} /> Bog
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" onChange={this.handleInputChange} /> Rock
+                                        <Input type="radio" value ="Rock" name="terrain" onChange={this.handleInputChange} /> Rock
                                     </Label>
                                 </FormGroup>
                             </Col>
@@ -149,22 +142,27 @@ class Upload extends Component {
                             <Col md={4}>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" /> 1 star
+                                        <Input type="radio" value="1" name="rating" onChange={this.handleInputChange} /> 1 star
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" /> 2 star
+                                        <Input type="radio"  value ="2" name="rating" onChange={this.handleInputChange}/> 2 star
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" /> 3 star
+                                        <Input type="radio" value ="3" name="rating" onChange={this.handleInputChange}/> 3 star
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" /> 4 star
+                                        <Input type="radio" value ="4" name="rating" onChange={this.handleInputChange}/> 4 star
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check inline>
+                                    <Label check>
+                                        <Input type="radio" value ="5" name="rating" onChange={this.handleInputChange}/> 5 star
                                     </Label>
                                 </FormGroup>
                             </Col>
@@ -173,7 +171,8 @@ class Upload extends Component {
                             <Col md={4}>
                                 <Input type="textarea" model=".message" id="message" name="message"
                                         rows="4" 
-                                        className="form-control"/>
+                                        className="form-control"
+                                        onChange={this.handleInputChange}/>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
