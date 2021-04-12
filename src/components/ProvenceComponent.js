@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import { Loading } from '../components/LoadingComponent'
+
 function RenderCard({provence}){
     return(
         <div className="col-6 col-md-4 col-lg-3">
@@ -23,22 +25,44 @@ class ProvenceList extends Component {
         super(props)
     }
     render(){
-        return(
-            <div>
-                <h1>Provence Page</h1>
-                <h3>Pick a Provence you would like to explore</h3>
+        if(this.props.isLoading){
+            return(
                 <div className="container">
-                    <div className="row justify-content-center">
-                        {this.props.provences.map((provence) => {
-                            return(
-                                <RenderCard provence={provence} />
-                            )
-                        })}
-                        
+                    <div className="row">
+                        <Loading />
                     </div>
                 </div>
-            </div>
-        )
+                
+            )
+        }
+
+        else if(this.props.erMess){
+            return(
+                <div className="container">
+                    <div className="row">
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+                
+            )
+        }
+        else if(this.props.provences !=null)
+            return(
+                <div>
+                    <h1>Provence Page</h1>
+                    <h3>Pick a Provence you would like to explore</h3>
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            {this.props.provences.map((provence) => {
+                                return(
+                                    <RenderCard provence={provence} />
+                                )
+                            })}
+                            
+                        </div>
+                    </div>
+                </div>
+            )
     }
     
 }

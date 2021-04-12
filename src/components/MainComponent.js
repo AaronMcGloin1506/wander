@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addTrail } from '../redux/ActionCreators';
+import { addTrail, fetchProvences } from '../redux/ActionCreators';
 
 
 import Header from './HeaderComponent';
@@ -21,7 +21,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addTrail: (trailName, author, countyId, provenceId,category, terrain, rating, description) => dispatch(addTrail(trailName, author, countyId, provenceId,category, terrain, rating, description))
+    addTrail: (trailName, author, countyId, provenceId,category, terrain, rating, description) => dispatch(addTrail(trailName, author, countyId, provenceId,category, terrain, rating, description)),
+    fetchProvences: () => {dispatch(fetchProvences())}
 })
 
 
@@ -29,6 +30,11 @@ class Main extends Component {
     constructor(props){
         super(props) 
     }
+
+    componentDidMount(){
+        this.props.fetchProvences();
+    }
+
     render() {
 
         const HomePage = () => {
@@ -53,10 +59,18 @@ class Main extends Component {
                 <Header />
                     <Switch>
                         <Route path="/home" component={HomePage} />
-                        <Route path="/provence" component={() => <ProvenceList provences={this.props.provences}/>} />
+                        <Route path="/provence" 
+                            component={() => 
+                                    <ProvenceList 
+                                        provences={this.props.provences.provences} 
+                                        isLoading={this.props.provences.isLoading}
+                                        ErrMess={this.props.provences.errMess}
+                                    />
+                                } 
+                        />
                         <Route path="/counties/:provenceId" component={CountiesWithId} />
                         <Route path="/trails/:countyId" component={TrailsWithId}/>
-                        <Route path="/upload" component={() => <Upload counties={this.props.counties} provences={this.props.provences} addTrail = {this.props.addTrail}/>} />
+                        <Route path="/upload" component={() => <Upload counties={this.props.counties} provences={this.props.provences.provences} addTrail = {this.props.addTrail}/>} />
                         <Redirect to="home" />
                     </Switch>
                 <Footer />

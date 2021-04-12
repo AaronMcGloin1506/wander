@@ -4,7 +4,7 @@ import * as ActionTypes from './ActionTypes';
 
 export const Trails = (state= TRAILS, action) => {
     switch (action.type) {
-        case actionTypes.ADD_TRAIL:
+        case ActionTypes.ADD_TRAIL:
             var trail = action.payload;
             console.log('trail: ', trail )
             return state.concat(trail)
