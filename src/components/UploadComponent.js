@@ -13,6 +13,7 @@ class Upload extends Component {
     handleSubmit(values) {
         console.log('Current Sate is ' +JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
+        this.props.addTrail(values.trailname, values.author, values.countyId,values.provenceId, values.category, values.terrain, values.rating, values.description)
     }
 
     render(){
@@ -45,7 +46,7 @@ class Upload extends Component {
                         <Row className="form-group">
                             <Label htmlFor="county" md={2}>County</Label>
                             <Col md={4}>
-                                <Control.select model=".county" id="county" name="county" className="form-control" onChange={this.handleInputChange}>
+                                <Control.select model=".countyId" id="county" name="countyId" className="form-control" onChange={this.handleInputChange}>
                                 {this.props.counties.map((county) => (
                                         <option value ={county.id}>{county.name}</option>
                                     ))}
@@ -53,7 +54,7 @@ class Upload extends Component {
                             </Col>
                             <Label htmlFor="provence" md={2}>Provence</Label>
                             <Col md={4}>
-                                <Control.select model =".provence"id="provence" name="provence" className="form-control" onChange={this.handleInputChange}>
+                                <Control.select model =".provenceId"id="provenceId" name="provenceId" className="form-control" onChange={this.handleInputChange}>
                                 {this.props.provences.map((provence) => (
                                         <option value ={provence.id}>{provence.name}</option>
                                     ))}
@@ -121,9 +122,9 @@ class Upload extends Component {
                                     </Label>
                             </Col>
 
-                            <Label htmlFor="rating" md={2}>Brief Description:</Label>  
+                            <Label htmlFor="description" md={2}>Brief Description:</Label>  
                             <Col md={4}>
-                                <Control.textarea model=".message" id="message" name="message"
+                                <Control.textarea model=".description" id="description" name="description"
                                         rows="4" 
                                         className="form-control"
                                         onChange={this.handleInputChange}/>

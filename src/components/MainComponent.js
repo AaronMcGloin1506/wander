@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { addTrail } from '../redux/ActionCreators';
 
 
 import Header from './HeaderComponent';
@@ -18,6 +19,11 @@ const mapStateToProps = state => {
         counties: state.counties
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    addTrail: (trailName, author, countyId, provenceId,category, terrain, rating, description) => dispatch(addTrail(trailName, author, countyId, provenceId,category, terrain, rating, description))
+})
+
 
 class Main extends Component {
     constructor(props){
@@ -50,7 +56,7 @@ class Main extends Component {
                         <Route path="/provence" component={() => <ProvenceList provences={this.props.provences}/>} />
                         <Route path="/counties/:provenceId" component={CountiesWithId} />
                         <Route path="/trails/:countyId" component={TrailsWithId}/>
-                        <Route path="/upload" component={() => <Upload counties={this.props.counties} provences={this.props.provences} />} />
+                        <Route path="/upload" component={() => <Upload counties={this.props.counties} provences={this.props.provences} addTrail = {this.props.addTrail}/>} />
                         <Redirect to="home" />
                     </Switch>
                 <Footer />
@@ -59,4 +65,4 @@ class Main extends Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
