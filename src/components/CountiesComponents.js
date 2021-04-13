@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import { Loading } from '../components/LoadingComponent';
+
 function RenderCard({county}){
     return(
         <div className="col-6 col-md-4 col-lg-3">
@@ -25,9 +27,31 @@ class CountiesList extends Component{
     }
 
     render(){
+        if(this.props.isLoading){
+            return(
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+                
+            )
+        }
+
+        else if(this.props.erMess){
+            return(
+                <div className="container">
+                    <div className="row">
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+                
+            )
+        }
+        else if(this.props.counties !=null)
         return(
             <div>
-            <h1>{this.props.counties.name}</h1>
+            {/* <h1>{this.props.provence.name}</h1> */}
                 <h3>Pick a County you would like to explore</h3>
                 <div className="container">
                     <div className="row justify-content-center">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addTrail, fetchProvences } from '../redux/ActionCreators';
+import { addTrail, fetchCounties, fetchProvences, fetchTrails } from '../redux/ActionCreators';
 
 
 import Header from './HeaderComponent';
@@ -22,7 +22,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
     addTrail: (trailName, author, countyId, provenceId,category, terrain, rating, description) => dispatch(addTrail(trailName, author, countyId, provenceId,category, terrain, rating, description)),
-    fetchProvences: () => {dispatch(fetchProvences())}
+    fetchProvences: () => {dispatch(fetchProvences())},
+    fetchCounties: () => {dispatch(fetchCounties())},
+    fetchTrails: () => {dispatch(fetchTrails())}
 })
 
 
@@ -33,6 +35,8 @@ class Main extends Component {
 
     componentDidMount(){
         this.props.fetchProvences();
+        this.props.fetchCounties();
+        this.props.fetchTrails();
     }
 
     render() {
@@ -45,13 +49,20 @@ class Main extends Component {
         const CountiesWithId = ({match}) => {
             return(
                 
-                <CountiesList counties={this.props.counties.filter((county) => county.provId === parseInt(match.params.provenceId,10))}/>
+                <CountiesList 
+                    counties={this.props.counties.counties.filter((county) => county.provId === parseInt(match.params.provenceId,10))}
+                    isLoading={this.props.counties.isLoading}
+                    errMess={this.props.counties.errMess}/>
                 
             )
         }
         const TrailsWithId = ({match}) => {
             return(
-                <TrailsList trails={this.props.trails.filter((trail) => trail.countyId === parseInt(match.params.countyId,10))} />
+                <TrailsList 
+                    trails={this.props.trails.trails.filter((trail) => trail.countyId === parseInt(match.params.countyId,10))}
+                    isLoading={this.props.trails.isLoading}
+                    errMess={this.props.trails.isLoading}
+                />
             )
         }
         return(
@@ -70,7 +81,7 @@ class Main extends Component {
                         />
                         <Route path="/counties/:provenceId" component={CountiesWithId} />
                         <Route path="/trails/:countyId" component={TrailsWithId}/>
-                        <Route path="/upload" component={() => <Upload counties={this.props.counties} provences={this.props.provences.provences} addTrail = {this.props.addTrail}/>} />
+                        <Route path="/upload" component={() => <Upload counties={this.props.counties.counties} provences={this.props.provences.provences} addTrail = {this.props.addTrail}/>} />
                         <Redirect to="home" />
                     </Switch>
                 <Footer />

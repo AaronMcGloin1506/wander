@@ -6,6 +6,7 @@ export const Provences = (state = {
     provences: []
     }, action) => {
     switch (action.type) {
+        
         case ActionTypes.ADD_PROVENCES:
             return {...state, isLoading: false, errMess: null, provences: action.payload}
         

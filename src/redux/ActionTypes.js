@@ -1,5 +1,3 @@
-import { COUNTIES } from "../shared/counties";
-import { TRAILS } from "../shared/trails";
 
 export const ADD_TRAIL = 'ADD_TRAIL';
 
