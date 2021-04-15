@@ -13,7 +13,7 @@ class Upload extends Component {
     handleSubmit(values) {
         console.log('Current Sate is ' +JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
-        this.props.addTrail(values.trailname, values.author, values.countyId,values.provenceId, values.category, values.terrain, values.rating, values.description)
+        this.props.postTrail(values.trailname, values.author, values.countyId,values.provenceId, values.category, values.terrain, values.rating, values.description)
     }
 
     render(){
@@ -54,9 +54,9 @@ class Upload extends Component {
                             </Col>
                             <Label htmlFor="provence" md={2}>Provence</Label>
                             <Col md={4}>
-                                <Control.select model =".provenceId"id="provenceId" name="provenceId" className="form-control" onChange={this.handleInputChange}>
+                                <Control.select model =".provenceId"id="provenceId" name="provId" className="form-control" onChange={this.handleInputChange}>
                                 {this.props.provences.map((provence) => (
-                                        <option value ={provence.id}>{provence.name}</option>
+                                        <option value={provence.id}>{provence.name}</option>
                                     ))}
                                 </Control.select>
                             </Col>

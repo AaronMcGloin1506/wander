@@ -8,7 +8,6 @@ export const Trails = (state = {
     switch (action.type) {
         case ActionTypes.ADD_TRAIL:
             var trail = action.payload;
-            trail.id = state.trails.length;
             console.log('trail: ', trail )
             return {...state, trails: state.trails.concat(trail)}
 

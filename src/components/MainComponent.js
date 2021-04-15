@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addTrail, fetchCounties, fetchProvences, fetchTrails } from '../redux/ActionCreators';
+import { postTrail, fetchCounties, fetchProvences, fetchTrails } from '../redux/ActionCreators';
 
 
 import Header from './HeaderComponent';
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addTrail: (trailName, author, countyId, provenceId,category, terrain, rating, description) => dispatch(addTrail(trailName, author, countyId, provenceId,category, terrain, rating, description)),
+    postTrail: (trailName, author, countyId, provenceId,category, terrain, rating, description) => dispatch(postTrail(trailName, author, countyId, provenceId,category, terrain, rating, description)),
     fetchProvences: () => {dispatch(fetchProvences())},
     fetchCounties: () => {dispatch(fetchCounties())},
     fetchTrails: () => {dispatch(fetchTrails())}
@@ -81,7 +81,7 @@ class Main extends Component {
                         />
                         <Route path="/counties/:provenceId" component={CountiesWithId} />
                         <Route path="/trails/:countyId" component={TrailsWithId}/>
-                        <Route path="/upload" component={() => <Upload counties={this.props.counties.counties} provences={this.props.provences.provences} addTrail = {this.props.addTrail}/>} />
+                        <Route path="/upload" component={() => <Upload counties={this.props.counties.counties} provences={this.props.provences.provences} postTrail = {this.props.postTrail}/>} />
                         <Redirect to="home" />
                     </Switch>
                 <Footer />

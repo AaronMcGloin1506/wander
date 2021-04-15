@@ -1,19 +1,57 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/bareUrl'
 
-export const addTrail = (trailName, author, countyId, provenceId,category, terrain, rating, description) => ({
+export const addTrail = (comment) => ({
     type: ActionTypes.ADD_TRAIL,
-    payload: {
+    payload: comment
+});
+
+export const postTrail = (trailName, author, countyId, provenceId,category, terrain, rating, description) => (dispatch) => {
+
+    const newTrail = {
+    
         trailName: trailName,
         author: author,
-        countyId: countyId,
-        provenceId: provenceId,
+        countyId: Number(countyId),
+        provenceId: Number(provenceId),
         category: category,
         terrain: terrain,
         rating: rating,
         description: description
+        
     }
-})
+
+    return fetch(baseUrl + 'trails', {
+        method: 'POST',
+        body: JSON.stringify(newTrail),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if(response.ok){
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText) 
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(response => dispatch(addTrail(response)))
+    .catch(error => {   console.log("Post trail", error.message)
+                        alert("Your trail could not be posted\n "+ error.message)
+                    })
+
+}
+
+
 
 export const fetchProvences = () => (dispatch) => {
     dispatch(provencesLoading(true));
