@@ -1,7 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { PROVENCES } from '../shared/provences';
-import { COUNTIES } from '../shared/counties';
-import { TRAILS } from '../shared/trails';
+import { baseUrl } from '../shared/bareUrl'
 
 export const addTrail = (trailName, author, countyId, provenceId,category, terrain, rating, description) => ({
     type: ActionTypes.ADD_TRAIL,
@@ -20,9 +18,24 @@ export const addTrail = (trailName, author, countyId, provenceId,category, terra
 export const fetchProvences = () => (dispatch) => {
     dispatch(provencesLoading(true));
 
-    setTimeout(() => {
-        dispatch(addProvences(PROVENCES));
-    }, 2000)
+    return fetch(baseUrl + 'provences')
+        .then(response => {
+            if(response.ok){
+                return response;
+            }
+            else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText) 
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            var errmess = new Error(error.message);
+            throw errmess;
+        })
+        .then(response => response.json())
+        .then(provences => dispatch(addProvences(provences)))
+        .catch(error => dispatch(provenceFailed(error.message)))
 }
 
 export const provencesLoading = () => ({
@@ -42,9 +55,24 @@ export const addProvences = (provences) => ({
 export const fetchCounties = () => (dispatch) => {
     dispatch(countiesLoading(true));
 
-    setTimeout(() => {
-        dispatch(addCounties(COUNTIES));
-    }, 2000)
+    return fetch(baseUrl + 'counties')
+        .then(response => {
+            if(response.ok){
+                return response;
+            }
+            else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText) 
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            var errmess = new Error(error.message);
+            throw errmess;
+        })
+        .then(response => response.json())
+        .then(counties => dispatch(addCounties(counties)))
+        .catch(error => dispatch(countiesFailed(error.message)))        
 }
 
 export const countiesLoading = () => ({
@@ -64,9 +92,25 @@ export const addCounties = (counties) => ({
 export const fetchTrails = () => (dispatch) => {
     dispatch(trailsLoading(true));
 
-    setTimeout(() => {
-        dispatch(addTrails(TRAILS));
-    }, 2000)
+    return fetch(baseUrl + 'trails')
+    .then(response => {
+        if(response.ok){
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText) 
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(trails => dispatch(addTrails(trails)))
+    .catch(error => dispatch(trailsFailed(error.message)))
+        
 };
 
 export const trailsLoading = () => ({

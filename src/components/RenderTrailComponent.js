@@ -56,7 +56,7 @@ class RenderTrail extends Component{
         super(props);
 
         this.state ={
-            isModalOpen: false
+            isModalOpen: false,
         };
 
         this.toggleModal = this.toggleModal.bind(this)
@@ -68,7 +68,8 @@ class RenderTrail extends Component{
         })
     }
     render(){
-        return(
+        if(this.props.trail !=null)
+        {return(
             <>
                 <div className="col-6 col-md-4 col-lg-3">
                     <a style={{ cursor: 'pointer' }} onClick={this.toggleModal}>
@@ -87,7 +88,7 @@ class RenderTrail extends Component{
                     <div classname="container">
                         <div className="row justify-content-center">
                             <div className="col-sm-12 col-md-8">
-                                <img width="100%" src={this.props.trail.map} alt={this.props.trail.trailname}/>
+                                <img width="100%" src="./" alt={this.props.trail.trailname}/>
                             </div>
                         </div>
                         <div className="row justify-content-center">
@@ -112,7 +113,12 @@ class RenderTrail extends Component{
                 </ModalBody>
             </Modal>
         </>
-        )
+        )}
+        else {
+            return(
+                <h1>hello</h1>
+            )
+        }
     }
 }
 

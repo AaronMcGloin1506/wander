@@ -36,11 +36,11 @@ class ProvenceList extends Component {
             )
         }
 
-        else if(this.props.erMess){
+        else if(this.props.ErrMess){
             return(
                 <div className="container">
                     <div className="row">
-                        <h4>{this.props.errMess}</h4>
+                        <h4>{this.props.ErrMess}</h4>
                     </div>
                 </div>
                 

@@ -27,8 +27,20 @@ function TrailsList({trails, isLoading, errMess}) {
             
         )
     }
-    else if(trails !=null)    
-    return(
+    else if(trails.length === 0)    
+        {return(
+                <div>
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <h3>No trails for this county sorry</h3>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+    
+    else   
+    {return(
             <div>
                 <h3>Pick a Trail you would like to explore</h3>
                 <div className="container">
@@ -42,6 +54,6 @@ function TrailsList({trails, isLoading, errMess}) {
                     </div>
                 </div>
             </div>
-        )
+        )}
     }
 export default TrailsList;
