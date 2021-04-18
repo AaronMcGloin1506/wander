@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -20,14 +20,9 @@ function RenderCard({county}){
     );
 };
 
-class CountiesList extends Component{
+function CountiesList({counties, isLoading, errMess}){
 
-    constructor(props){
-        super(props);
-    }
-
-    render(){
-        if(this.props.isLoading){
+        if(isLoading){
             return(
                 <div className="container">
                     <div className="row">
@@ -38,7 +33,7 @@ class CountiesList extends Component{
             )
         }
 
-        else if(this.props.erMess){
+        else if(errMess){
             return(
                 <div className="container">
                     <div className="row">
@@ -48,14 +43,14 @@ class CountiesList extends Component{
                 
             )
         }
-        else if(this.props.counties !=null)
+        else if(counties !=null)
         return(
             <div>
             {/* <h1>{this.props.provence.name}</h1> */}
                 <h3>Pick a County you would like to explore</h3>
                 <div className="container">
                     <div className="row justify-content-center">
-                        {this.props.counties.map((county) => {
+                        {counties.map((county) => {
                             return(
                                 <RenderCard county={county} />
                             )
@@ -66,6 +61,6 @@ class CountiesList extends Component{
             </div>
         );
     }
-}
+
 
 export default CountiesList;

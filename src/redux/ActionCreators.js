@@ -10,14 +10,16 @@ export const postTrail = (trailName, author, countyId, provenceId,category, terr
 
     const newTrail = {
     
-        trailName: trailName,
+        trailname: trailName,
         author: author,
         countyId: Number(countyId),
         provenceId: Number(provenceId),
         category: category,
         terrain: terrain,
-        rating: rating,
-        description: description
+        rating: Number(rating),
+        description: description,
+        image: "../assets/images/trail.jpg",
+        map: "../assets/images/Glencar.jpg",
         
     }
 

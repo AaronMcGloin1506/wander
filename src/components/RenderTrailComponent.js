@@ -5,7 +5,7 @@ function StarRating(rating){
     if(rating === 1){
         return(
             <CardText>
-                <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                <i className="fa fa-star text-warning" aria-hidden="true"></i>
             </CardText>
         )
     }
@@ -88,7 +88,7 @@ class RenderTrail extends Component{
                     <div classname="container">
                         <div className="row justify-content-center">
                             <div className="col-sm-12 col-md-8">
-                                <img width="100%" src="./" alt={this.props.trail.trailname}/>
+                                <img width="100%" src={this.props.trail.map} alt={this.props.trail.trailname}/>
                             </div>
                         </div>
                         <div className="row justify-content-center">

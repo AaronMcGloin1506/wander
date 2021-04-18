@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Breadcrumb, BreadcrumbItem, Button, Row, FormGroup, Label, Input, Col} from 'reactstrap'
-import { Control, LocalForm, Errors} from 'react-redux-form';
+import { Button, Row, Label, Col} from 'reactstrap'
+import { Control, LocalForm } from 'react-redux-form';
 
 
 class Upload extends Component {
