@@ -1,1 +1,1 @@
-export const baseUrl = 'http://localhost:3001/'
+export const baseUrl = 'https://firebasestorage.googleapis.com/v0/b/wander-2ab1f.appspot.com/o/WanderDB.json?alt=media&token=e5a1c700-d7c8-4084-a535-fb84013355fe/'
